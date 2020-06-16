@@ -2,7 +2,7 @@
 
 *Code to replicate the experiments in [the paper](http://arXiv.org/) by Ezra Winston and [Zico Kolter](http://zicokolter.com).* 
 
-Monotone operator equilibrium networks (MONs) are a form of [Deep Equilibrium Model](https://arxiv.org/abs/1909.01377) which guarantee convergence to a unique fixed-point. 
+Monotone operator equilibrium networks (MONs) are a form of Deep Equilibrium Model ([Bai et al. 2019](https://arxiv.org/abs/1909.01377)) which guarantee convergence to a unique fixed-point. 
 
 Unlike traditional deep networks which explicitly iterate some number of non-linear layers, deep equilibrium models directly solve for the fixed point of an "infinitely deep" weight-tied network. But how can we guarantee that such a fixed point exists, and that our fixed-point solver will converge to it? In practice, Deep equilibrium models require extensive tuning in order to obtain stable convergence. 
 
@@ -15,7 +15,7 @@ These methods will be guaranteed to converge to a solution provided the network 
 
 ## Results on image benchmarks
 
-MONs perform well on several image classification benchmarks. For example, the table shows performance of several instantiations of MON on CIFAR-10. We compare to the performance of Neural ODEs ([Chen et al.](https://arxiv.org/abs/1806.07366)) and Augmented Neural ODEs ([Dupont et al.](https://arxiv.org/abs/1904.01681)), the only other implicit-depth models like MON which guarantee existence of a network fixed-point.   
+MONs perform well on several image classification benchmarks. For example, the table shows performance of several instantiations of MON on CIFAR-10. We compare to the performance of Neural ODEs ([Chen et al. 2018](https://arxiv.org/abs/1806.07366)) and Augmented Neural ODEs ([Dupont et al. 2019](https://arxiv.org/abs/1904.01681)), the only other implicit-depth models like MON which guarantee existence of a network fixed-point.   
  
 | Method                 | Model size | Acc.       |
 |---------------------------------------|------------------------|---------------------------|
