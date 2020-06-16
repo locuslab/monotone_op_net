@@ -4,7 +4,7 @@
 
 Monotone operator equilibrium networks (MONs) are a form of Deep Equilibrium Model ([Bai et al. 2019](https://arxiv.org/abs/1909.01377)) which guarantee convergence to a unique fixed-point. 
 
-Unlike traditional deep networks which explicitly iterate some number of non-linear layers, deep equilibrium models directly solve for the fixed point of an "infinitely deep" weight-tied network. But how can we guarantee that such a fixed point exists, and that our fixed-point solver will converge to it? In practice, Deep equilibrium models require extensive tuning in order to obtain stable convergence. 
+Unlike traditional deep networks which explicitly iterate some number of non-linear layers, deep equilibrium models directly solve for the fixed point of an "infinitely deep" weight-tied network. But how can we guarantee that such a fixed point exists, and that our fixed-point solver will converge to it? In practice, deep equilibrium models require extensive tuning in order to obtain stable convergence. 
 
 ## The MON framework
 We recast the problem of finding the network fixed point as a form of _monotone operator splitting problem_, which can be solved using operator splitting methods such as _forward-backward_ or _Peaceman-Rachford_ splitting.
