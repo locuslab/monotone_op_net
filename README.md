@@ -1,6 +1,6 @@
 # Monotone operator equilibrium networks
 
-*Code to replicate the experiments in [the paper](https://arxiv.org/abs/2006.08591) by Ezra Winston and [Zico Kolter](http://zicokolter.com).* 
+*Code to replicate the experiments in [the paper](https://arxiv.org/abs/2006.08591) by Ezra Winston and [Zico Kolter](http://zicokolter.com). More detailed tutorial coming soon.*
 
 Monotone operator equilibrium networks (MONs) are a form of Deep Equilibrium Model ([Bai et al. 2019](https://arxiv.org/abs/1909.01377)) which guarantee convergence to a unique fixed-point. 
 
