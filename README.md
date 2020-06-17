@@ -1,6 +1,6 @@
 # Monotone operator equilibrium networks
 
-*Code to replicate the experiments in [the paper](https://arxiv.org/abs/2006.08591) by Ezra Winston and [Zico Kolter](http://zicokolter.com)*
+*Code to replicate the experiments in [the paper](https://arxiv.org/abs/2006.08591) by Ezra Winston and [Zico Kolter](http://zicokolter.com).*
 
 **See the [tutorial notebook](tutorial.ipynb) for an introduction to the paper and the code in this repo.**
 
