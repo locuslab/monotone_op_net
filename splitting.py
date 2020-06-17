@@ -73,6 +73,7 @@ class MONForwardBackwardSplitting(nn.Module):
 
             err = 1.0
             it = 0
+            errs = []
             while (err > sp.tol and it < sp.max_iter):
                 un = sp.linear_module.multiply_transpose(*u)
                 un = tuple((1 - sp.alpha) * u[i] + sp.alpha * un[i] for i in range(n))
@@ -81,6 +82,7 @@ class MONForwardBackwardSplitting(nn.Module):
                     un[i][I[i]] = v[i][I[i]]
 
                 err = sum((un[i] - u[i]).norm().item() / (1e-6 + un[i].norm().item()) for i in range(n))
+                errs.append(err)
                 u = un
                 it = it + 1
 
@@ -92,6 +94,7 @@ class MONForwardBackwardSplitting(nn.Module):
 
             sp.stats.bkwd_iters.update(it)
             sp.stats.bkwd_time.update(time.time() - start)
+            sp.errs = errs
             return (None,) + dg
 
 
@@ -173,6 +176,7 @@ class MONPeacemanRachford(nn.Module):
                       for s in sp.linear_module.z_shape(g[0].shape[0]))
 
             err = 1.0
+            errs=[]
             it = 0
             while (err >sp.tol and it < sp.max_iter):
                 u_12 = tuple(2 * z[i] - u[i] for i in range(n))
@@ -183,6 +187,7 @@ class MONPeacemanRachford(nn.Module):
                     zn[i][I[i]] = v[i][I[i]]
 
                 err = sum((zn[i] - z[i]).norm().item() / (1e-6 + zn[i].norm().item()) for i in range(n))
+                errs.append(err)
                 z = zn
                 it = it + 1
 
@@ -194,4 +199,5 @@ class MONPeacemanRachford(nn.Module):
 
             sp.stats.bkwd_iters.update(it)
             sp.stats.bkwd_time.update(time.time() - start)
+            sp.errs = errs
             return (None,) + dg
