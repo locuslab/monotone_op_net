@@ -284,4 +284,4 @@ class  MultiConvNet(nn.Module):
         zs = self.mon(x)
         z = zs[-1]
         z = z.view(z.shape[0],-1)
-        self.Wout(z)
+        return self.Wout(z)
