@@ -75,6 +75,7 @@ def power_iteration(linear_module, z, T,  compute_smallest=False, largest=None):
 def get_splitting_stats(dataLoader, model):
     model = cuda(model)
     model.train()
+    model.mon.save_abs_err = True
     for batch in dataLoader:
         data, target = cuda(batch[0]), cuda(batch[1])
         model(data)

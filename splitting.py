@@ -15,6 +15,7 @@ class MONForwardBackwardSplitting(nn.Module):
         self.max_iter = max_iter
         self.verbose = verbose
         self.stats = utils.SplittingMethodStats()
+        self.save_abs_err = False
 
     def forward(self, x):
         """ Forward pass of the MON, find an equilibirum with forward-backward splitting"""
@@ -34,8 +35,12 @@ class MONForwardBackwardSplitting(nn.Module):
                 zn = self.linear_module.multiply(*z)
                 zn = tuple((1 - self.alpha) * z[i] + self.alpha * (zn[i] + bias[i]) for i in range(n))
                 zn = self.nonlin_module(*zn)
-                err = sum((zn[i] - z[i]).norm().item() / (1e-6 + zn[i].norm().item()) for i in range(n))
-                errs.append(err)
+                if self.save_abs_err:
+                    fn = self.nonlin_module(*self.linear_module(x, *zn))
+                    err = sum((zn[i] - fn[i]).norm().item() / (zn[i].norm().item()) for i in range(n))
+                    errs.append(err)
+                else:
+                    err = sum((zn[i] - z[i]).norm().item() / (1e-6 + zn[i].norm().item()) for i in range(n))
                 z = zn
                 it = it + 1
 
@@ -109,6 +114,7 @@ class MONPeacemanRachford(nn.Module):
         self.max_iter = max_iter
         self.verbose = verbose
         self.stats = utils.SplittingMethodStats()
+        self.save_abs_err = False
 
     def forward(self, x):
         """ Forward pass of the MON, find an equilibirum with forward-backward splitting"""
@@ -134,8 +140,12 @@ class MONPeacemanRachford(nn.Module):
                 u = tuple(2 * z_12[i] - u_12[i] for i in range(n))
                 zn = self.nonlin_module(*u)
 
-                err = sum((zn[i] - z[i]).norm().item() / (1e-6 + zn[i].norm().item()) for i in range(n))
-                errs.append(err)
+                if self.save_abs_err:
+                    fn = self.nonlin_module(*self.linear_module(x, *zn))
+                    err = sum((zn[i] - fn[i]).norm().item() / (zn[i].norm().item()) for i in range(n))
+                    errs.append(err)
+                else:
+                    err = sum((zn[i] - z[i]).norm().item() / (1e-6 + zn[i].norm().item()) for i in range(n))
                 z = zn
                 it = it + 1
 
